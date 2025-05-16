@@ -1,249 +1,183 @@
-/* Reset and Base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
+/* style.css */
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
 }
 
-a {
-  text-decoration: none;
-  color: #3498db;
-  transition: color 0.3s;
-}
-
-a:hover {
-  color: #21618c;
-}
-
-/* Navbar */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: #2c3e50;
-  color: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  background-color: #333;
+  color: white;
+  padding: 1em 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
 }
 
-.nav-links li a {
-  color: #ecf0f1;
-  font-weight: 500;
-  position: relative;
+.nav-links li {
+  margin-left: 1.5em;
 }
 
-.nav-links li a::after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: -3px;
-  left: 0;
-  background-color: #3498db;
-  transition: width 0.3s ease-in-out;
+.nav-links a {
+  color: white;
+  text-decoration: none;
 }
 
-.nav-links li a:hover::after {
-  width: 100%;
-}
-
-/* Sections */
 .section {
-  padding: 4rem 2rem;
-  max-width: 1000px;
-  margin: auto;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease-in-out;
-}
-
-.section.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-h1, h2 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-}
-
-p {
-  max-width: 800px;
-  margin-bottom: 1.5rem;
+  padding: 5em 2em;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .home {
-  text-align: center;
-  background: linear-gradient(145deg, #e6e6e6, #ffffff);
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding-top: 8em;
 }
 
 .profile-pic {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 5px solid #3498db;
-  margin-top: 1rem;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-  cursor: grab;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1em;
+  cursor: grab;
+  transition: transform 0.3s ease-in-out;
 }
 
-.profile-pic:hover {
-  transform: scale(1.05);
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
 }
 
-.fade-in {
-  animation: fadeIn 2s ease forwards;
+h1 span {
+  color: #5cb85c;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+h2 {
+  font-size: 2em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.5em;
 }
 
-/* Skills */
 .skill-list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .skill-list li {
-  background: #3498db;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 25px;
-  font-weight: bold;
-  transition: transform 0.3s ease;
+  background-color: #eee;
+  color: #333;
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  border-radius: 5px;
 }
 
-.skill-list li:hover {
-  transform: scale(1.1);
-}
-
-/* Projects & Certificates */
 .scroll-container {
-  display: flex;
-  overflow-x: auto;
-  gap: 1rem;
-  padding: 1rem 0;
-  scroll-snap-type: x mandatory;
+  display: flex;
+  overflow-x: auto;
+  gap: 1em;
+  padding: 1em 0;
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+  cursor: grab;
+}
+
+.scroll-container.grabbing {
+  cursor: grabbing;
 }
 
 .card {
-  min-width: 220px;
-  background: #fff;
-  padding: 1rem;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  scroll-snap-align: start;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: grab;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5em;
+  min-width: 200px;
+  text-align: center;
 }
 
 .card.cert {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.6s ease;
-}
-
-.card.cert.visible {
-  opacity: 1;
-  transform: translateY(0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card.cert img {
-  width: 180px;
-  height: auto;
-  border-radius: 10px;
-  margin-bottom: 0.5rem;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 0.5em;
 }
 
-.card.cert p {
-  font-weight: 500;
-}
-
-/* Footer */
 footer {
-  background: #2c3e50;
-  color: #fff;
-  padding: 2rem;
-  text-align: center;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1em 0;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
 }
 
-footer .social-links {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
+.social-links a {
+  color: white;
+  margin: 0 0.5em;
+  text-decoration: none;
 }
 
-footer .social-links a {
-  color: #ecf0f1;
-  font-weight: bold;
-  border-bottom: 2px solid transparent;
-  transition: border 0.3s ease;
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
-footer .social-links a:hover {
-  border-bottom: 2px solid #3498db;
+.fade-in.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .nav-links {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+}
 
-  .skill-list {
-    justify-content: center;
-  }
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  .card {
-    min-width: 180px;
-  }
+.card.cert {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
 
-  .section {
-    padding: 3rem 1rem;
-  }
+.card.cert.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
