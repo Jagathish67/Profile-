@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">MyProfile</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+    </ul>
+  </nav>
+
+  <section id="home" class="section home">
+    <img src="IMG_20231223_174735_248.jpg" alt="My Photo" class="profile-pic" />
+    <h1 class="fade-in">Hello, I'm <span>JAGATHISH</span></h1>
+    <p class="fade-in">Welcome to my creative space 👋</p>
+  </section>
+
+  <section id="about" class="section reveal">
+    <h2>About Me</h2>
+    <p>I’m a 2nd-year AI & Data Science student, passionate about web development, game dev, and solving real-world problems using code.</p>
+  </section>
+
+  <section id="skills" class="section reveal">
+    <h2>My Skills</h2>
+    <ul class="skill-list">
+      <li>Python</li>
+      <li>HTML & CSS</li>
+      <li>JavaScript</li>
+      <li>Flask</li>
+      <li>Machine Learning</li>
+    </ul>
+  </section>
+
+  <section id="projects" class="section reveal">
+    <h2>Projects</h2>
+    <div class="scroll-container" id="project-scroll">
+      <div class="card">Sign Language Navigator</div>
+      <div class="card">Instagram Emotion Analyzer</div>
+      <div class="card">Quote of the Day Generator</div>
+      <div class="card">YouTube Video Analyzer</div>
+      <div class="card">Student Dashboard App</div>
+    </div>
+  </section>
+
+  <section id="certificates" class="section reveal">
+    <h2>Certificates</h2>
+    <div class="scroll-container" id="cert-scroll">
+      <div class="card cert">
+        <img src="Screenshot_20250501_082433_LinkedIn.jpg" alt="Certificate 1">
+        <p>Python Basic</p>
+      </div>
+      <div class="card cert">
+        <img src="Screenshot_20250501_082416_LinkedIn.jpg" alt="Certificate 2">
+        <p>Data Analysis with Python</p>
+      </div>
+      <div class="card cert">
+        <img src="Screenshot_20250501_082402_LinkedIn.jpg" alt="Certificate 3">
+        <p>Python Essential Trainning</p>
+      </div>
+      <div class="card cert">
+        <img src="orcal.png" alt="Certificate 4">
+        <p>Oracle Cloud Infrastructure 2025</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Connect with me:</p>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/jagathish-t-ab46102a4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
+" target="_blank">LinkedIn</a>
+      <a href="https://www.instagram.com/jaxk_rozy?igsh=MXVzeGpqN2RxNWlkMA==" target="_blank">Instagram</a>
+      <a href=" " target="_blank">Blog</a>
+    </div>
+  </footer>
+
+  <script>
+    const revealSections = document.querySelectorAll(".reveal");
+    window.addEventListener("scroll", () => {
+      revealSections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+          section.classList.add("active");
+        }
+      });
+    });
+
+    // Animate certificate cards one-by-one
+    const certCards = document.querySelectorAll('.card.cert');
+    window.addEventListener("scroll", () => {
+      certCards.forEach((card, index) => {
+        const top = card.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+          setTimeout(() => {
+            card.classList.add("visible");
+          }, index * 200);
+        }
+      });
+    });
+
+    // Mouse drag scroll - Projects
+    const projectScroll = document.getElementById('project-scroll');
+    let isDownProj = false;
+    let startXProj;
+    let scrollLeftProj;
+
+    projectScroll.addEventListener('mousedown', (e) => {
+      isDownProj = true;
+      startXProj = e.pageX - projectScroll.offsetLeft;
+      scrollLeftProj = projectScroll.scrollLeft;
+    });
+
+    projectScroll.addEventListener('mouseleave', () => isDownProj = false);
+    projectScroll.addEventListener('mouseup', () => isDownProj = false);
+    projectScroll.addEventListener('mousemove', (e) => {
+      if (!isDownProj) return;
+      e.preventDefault();
+      const x = e.pageX - projectScroll.offsetLeft;
+      const walk = (x - startXProj) * 2;
+      projectScroll.scrollLeft = scrollLeftProj - walk;
+    });
+
+    // Mouse drag scroll - Certificates
+    const certScroll = document.getElementById('cert-scroll');
+    let isDownCert = false;
+    let startXCert;
+    let scrollLeftCert;
+
+    certScroll.addEventListener('mousedown', (e) => {
+      isDownCert = true;
+      startXCert = e.pageX - certScroll.offsetLeft;
+      scrollLeftCert = certScroll.scrollLeft;
+    });
+
+    certScroll.addEventListener('mouseleave', () => isDownCert = false);
+    certScroll.addEventListener('mouseup', () => isDownCert = false);
+    certScroll.addEventListener('mousemove', (e) => {
+      if (!isDownCert) return;
+      e.preventDefault();
+      const x = e.pageX - certScroll.offsetLeft;
+      const walk = (x - startXCert) * 2;
+      certScroll.scrollLeft = scrollLeftCert - walk;
+    });
+
+    // Rotate profile image on mouse drag
+    const profilePic = document.querySelector('.profile-pic');
+    let isDraggingImg = false;
+    let startXImg;
+    let currentRotate = 0;
+
+    profilePic.addEventListener('mousedown', (e) => {
+      isDraggingImg = true;
+      startXImg = e.pageX;
+      profilePic.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDraggingImg = false;
+      profilePic.style.cursor = 'grab';
+      currentRotate = getRotation(profilePic);
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDraggingImg) return;
+      const rotateAmount = (e.pageX - startXImg) * 0.2;
+      profilePic.style.transform = `rotate(${currentRotate + rotateAmount}deg)`;
+    });
+
+    function getRotation(el) {
+      const style = window.getComputedStyle(el);
+      const matrix = new DOMMatrixReadOnly(style.transform);
+      const angle = Math.round(Math.atan2(matrix.b, matrix.a) * (180 / Math.PI));
+      return angle;
+    }
+  </script>
+</body>
+</html>
